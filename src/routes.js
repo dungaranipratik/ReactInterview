@@ -14,26 +14,17 @@ const Routers = () =>  {
     let user =  cookies.get('userdata')
     console.log("user",user);
     return (
-        <React.Fragment>
-        {
-            !user ?
-                <Routes>
-                    <Route path="/" exact element={<Login/>} />
-                </Routes> 
-               :
-            <>
-                <Suspense fallback={<div>Loading...</div>}>
-                    <MainLayout>
-                        <Routes>
-                            <Route path="/" exact element={!user ? <Login/> :  <Navigate to="/address-book" />} />
-                            <Route path="/address-book" exact element={<Addresslist/>} />
-                            <Route path="/add-address" exact element={<AddAddress/>} />
-                            <Route path="/add-address/:id" exact element={<AddAddress/>} />
-                        </Routes>
-                    </MainLayout >
-                </Suspense>
-            </>
-        }
+         <React.Fragment>
+            <Suspense fallback={<div>Loading...</div>}>
+                <MainLayout>
+                    <Routes>
+                        <Route path="/" exact element={!user ? <Login/> :  <Navigate to="/address-book" />} />
+                        <Route path="/address-book" exact element={<Addresslist/>} />
+                        <Route path="/add-address" exact element={<AddAddress/>} />
+                        <Route path="/add-address/:id" exact element={<AddAddress/>} />
+                    </Routes>
+                </MainLayout >
+            </Suspense>
         </React.Fragment>
     )
 }
